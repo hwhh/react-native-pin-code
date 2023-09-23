@@ -1,9 +1,20 @@
 import React from "react";
-import { StyleProp, TextStyle, View, ViewProps } from "react-native"
-import { DEFAULT } from "../common";
+import {StyleProp, TextStyle, View, ViewProps} from "react-native"
+import {DEFAULT} from "../common";
 import NumberButton from "./NumberButton";
 
-const NumbersPanel = ({ style, buttonStyle, onButtonPress, textStyle, rowStyle, disabled, backSpaceText, backSpace }: {
+const NumbersPanel = ({
+                          style,
+                          buttonStyle,
+                          onButtonPress,
+                          textStyle,
+                          rowStyle,
+                          disabled,
+                          backSpaceText,
+                          backSpace,
+                          biometric,
+                          enableBiometricButton = true
+                      }: {
     buttonStyle?: StyleProp<ViewProps>;
     onButtonPress: (value: string) => void;
     style?: StyleProp<ViewProps>;
@@ -11,31 +22,53 @@ const NumbersPanel = ({ style, buttonStyle, onButtonPress, textStyle, rowStyle, 
     rowStyle?: StyleProp<TextStyle>;
     disabledStyle?: StyleProp<TextStyle>;
     backSpace?: JSX.Element;
+    biometric?: JSX.Element;
     backSpaceText?: string;
     disabled?: boolean;
+    enableBiometricButton?: boolean;
 }) => {
     return <View style={[DEFAULT.Styles.enter?.buttonContainer, style]}>
         <View style={[DEFAULT.Styles.enter?.buttonRow, rowStyle]}>
-            <NumberButton value={'1'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
-            <NumberButton value={'2'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
-            <NumberButton value={'3'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
+            <NumberButton value={'1'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
+            <NumberButton value={'2'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
+            <NumberButton value={'3'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
         </View>
         <View style={[DEFAULT.Styles.enter?.buttonRow, rowStyle]}>
-            <NumberButton value={'4'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
-            <NumberButton value={'5'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
-            <NumberButton value={'6'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
+            <NumberButton value={'4'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
+            <NumberButton value={'5'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
+            <NumberButton value={'6'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
         </View>
         <View style={[DEFAULT.Styles.enter?.buttonRow, rowStyle]}>
-            <NumberButton value={'7'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
-            <NumberButton value={'8'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
-            <NumberButton value={'9'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
+            <NumberButton value={'7'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
+            <NumberButton value={'8'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
+            <NumberButton value={'9'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
         </View>
         <View style={[DEFAULT.Styles.enter?.buttonRow, rowStyle]}>
-            <View style={[DEFAULT.Styles.enter?.button, buttonStyle, { backgroundColor: 'transparent', borderWidth: 0 }]} />
-            <NumberButton value={'0'} disabled={disabled} style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
+            {enableBiometricButton ? (<NumberButton value={'biometric'} disabled={disabled}
+                                                    biometric={biometric}
+                                                    style={buttonStyle} textStyle={textStyle}
+                                                    onPress={onButtonPress}/>
+            ) : (
+                <View
+                    style={[DEFAULT.Styles.enter?.button, buttonStyle, {
+                        backgroundColor: 'transparent',
+                        borderWidth: 0
+                    }]}/>
+            )}
+            <NumberButton value={'0'} disabled={disabled} style={buttonStyle} textStyle={textStyle}
+                          onPress={onButtonPress}/>
             <NumberButton value={'delete'} disabled={disabled}
-                backSpace={backSpace} backSpaceText={backSpaceText || DEFAULT.TextOptions.set?.backSpace}
-                style={buttonStyle} textStyle={textStyle} onPress={onButtonPress} />
+                          backSpace={backSpace} backSpaceText={backSpaceText || DEFAULT.TextOptions.set?.backSpace}
+                          style={buttonStyle} textStyle={textStyle} onPress={onButtonPress}/>
         </View>
     </View>
 }

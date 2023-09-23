@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import {StyleProp, TextStyle, ViewStyle} from "react-native";
 
 export namespace PinCodeT {
     export type EnterSetStyles = {
@@ -34,7 +34,7 @@ export namespace PinCodeT {
          * Style of the View that wraps the number buttons and the backspace button
          */
         buttonContainer?: StyleProp<ViewStyle>;
-        /** 
+        /**
          * Style of the each row of number buttons
          */
         buttonRow?: StyleProp<ViewStyle>;
@@ -152,7 +152,7 @@ export namespace PinCodeT {
 
     export interface PinCodeProps {
         /**
-         * The current pin. When the app starts, it should get the pin from database/storage and pass to the PinCode. 
+         * The current pin. When the app starts, it should get the pin from database/storage and pass to the PinCode.
          * This will be used to check if the user enter the correct pin in the ENTER mode.
          */
         pin: string | undefined;
@@ -184,30 +184,30 @@ export namespace PinCodeT {
          * Triggered when the mode is `enter` and the user has entered the correct PIN. The application should hide the PinCode component and show its own content.
          * @param pin the entered pin
          * @see pin
-         * @returns 
+         * @returns
          */
         onEnter: (pin: string) => void;
         /**
          * Triggered when the user has successfully set the new pin. The application should persist the pin in this event.
          * @param pin the new pin
-         * @returns 
+         * @returns
          */
         onSet: (pin: string) => void;
         /**
          * Triggered when the user cancels the setting pin
-         * @returns 
+         * @returns
          */
         onSetCancel: () => void;
         /**
          * Called when the user has confirmed to reset the pin. The application should reseting the content, history, anything that belongs to the user.
-         * @returns 
+         * @returns
          */
         onReset: () => void;
         /**
          * Called when the mode is changed by PinCode itself. When you change the mode, it won't trigger.
-         * @param lastMode 
-         * @param newMode 
-         * @returns 
+         * @param lastMode
+         * @param newMode
+         * @returns
          */
         onModeChanged?: (lastMode: Modes, newMode?: Modes) => void;
     }
@@ -240,7 +240,7 @@ export namespace PinCodeT {
     }
 
     export interface Options {
-        /** 
+        /**
          * The length of pin
          * @default 4
          */
@@ -269,7 +269,7 @@ export namespace PinCodeT {
          */
         backSpace?: JSX.Element;
         /**
-         * On Locked screen the "Locked" text is shown above the countdown. But you can render an icon instead. 
+         * On Locked screen the "Locked" text is shown above the countdown. But you can render an icon instead.
          * @example <Icon name='lock' size={24} />
          */
         lockIcon?: JSX.Element;
@@ -278,6 +278,8 @@ export namespace PinCodeT {
          * @default 1000
          */
         retryLockDuration?: number;
+
+        biometric?: JSX.Element;
     }
 
     export type EnterTextOptions = {
@@ -302,6 +304,7 @@ export namespace PinCodeT {
          * Text for the footer in the `ENTER` mode
          */
         footerText?: string;
+
     }
 
     export type SetTextOptions = {
@@ -330,6 +333,7 @@ export namespace PinCodeT {
          * Text to cancel the `SET` mode
          */
         cancel?: string;
+
     }
     export type LockedTextOptions = {
         /**

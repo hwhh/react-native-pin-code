@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Platform, Pressable, Text, Vibration, View } from "react-native";
-import { PinCodeT } from "./types";
-import { DEFAULT } from './common';
+import React, {useState} from 'react';
+import {Platform, Pressable, Text, Vibration, View} from "react-native";
+import {PinCodeT} from "./types";
+import {DEFAULT} from './common';
 import NumbersPanel from './components/NumbersPanel';
 import Pin from './components/Pin';
 
-const EnterLayout = ({ pin, styles, mode, textOptions, options, onSwitchMode, onEnter, onReset, onMaxAttempt }: {
+const EnterLayout = ({pin, styles, mode, textOptions, options, onSwitchMode, onEnter, onReset, onMaxAttempt}: {
     pin: string | undefined;
     styles?: PinCodeT.EnterStyles;
     mode: PinCodeT.Modes;
@@ -63,34 +63,37 @@ const EnterLayout = ({ pin, styles, mode, textOptions, options, onSwitchMode, on
 
     return <>
         <View style={[DEFAULT.Styles.enter?.header, styles?.header]}>
-            <Text style={[DEFAULT.Styles.enter?.title, styles?.title]}>{textOptions.enter?.title || DEFAULT.TextOptions.enter?.title}</Text>
+            <Text
+                style={[DEFAULT.Styles.enter?.title, styles?.title]}>{textOptions.enter?.title || DEFAULT.TextOptions.enter?.title}</Text>
 
             <Text style={[DEFAULT.Styles.enter?.subTitle, styles?.subTitle]}>
                 {textOptions.enter?.subTitle?.replace('{{pinLength}}', (options?.pinLength || DEFAULT.Options.pinLength || 4).toString())}
             </Text>
-            {showError && <Text style={[DEFAULT.Styles.enter?.errorText, styles?.errorText]}>{textOptions.enter?.error || DEFAULT.TextOptions.enter?.error}</Text>}
+            {showError && <Text
+                style={[DEFAULT.Styles.enter?.errorText, styles?.errorText]}>{textOptions.enter?.error || DEFAULT.TextOptions.enter?.error}</Text>}
         </View>
         <View style={[DEFAULT.Styles.enter?.content, styles?.content]}>
             <Pin pin={curPin} pinLength={options?.pinLength || DEFAULT.Options.pinLength || 4}
-                style={styles?.pinContainer}
-                pinStyle={[DEFAULT.Styles.enter?.pin, styles?.pin]}
-                enteredPinStyle={[DEFAULT.Styles.enter?.enteredPin, styles?.enteredPin]} />
+                 style={styles?.pinContainer}
+                 pinStyle={[DEFAULT.Styles.enter?.pin, styles?.pin]}
+                 enteredPinStyle={[DEFAULT.Styles.enter?.enteredPin, styles?.enteredPin]}/>
 
             <NumbersPanel disabled={disabled} onButtonPress={onNumberPress}
-                backSpace={options?.backSpace} backSpaceText={textOptions.enter?.backSpace}
-                buttonStyle={styles?.button} rowStyle={styles?.buttonRow} style={styles?.buttonContainer}
-                textStyle={styles?.buttonText} disabledStyle={styles?.buttonTextDisabled}
+                          enableBiometricButton={true}
+                          backSpace={options?.backSpace} biometric={options?.biometric}
+                          backSpaceText={textOptions.enter?.backSpace}
+                          buttonStyle={styles?.button} rowStyle={styles?.buttonRow} style={styles?.buttonContainer}
+                          textStyle={styles?.buttonText} disabledStyle={styles?.buttonTextDisabled}
             />
         </View>
         <View style={[DEFAULT.Styles.enter?.footer, styles?.footer]}>
-            {options?.allowReset && <Pressable onPress={onReset} style={state => ({ opacity: state.pressed ? 0.6 : 1 })}>
-                <Text style={[DEFAULT.Styles.enter?.footerText, styles?.footerText]}>{textOptions.enter?.footerText || DEFAULT.TextOptions.enter?.footerText}</Text>
+            {options?.allowReset && <Pressable onPress={onReset} style={state => ({opacity: state.pressed ? 0.6 : 1})}>
+                <Text
+                    style={[DEFAULT.Styles.enter?.footerText, styles?.footerText]}>{textOptions.enter?.footerText || DEFAULT.TextOptions.enter?.footerText}</Text>
             </Pressable>}
         </View>
     </>
 }
-
-
 
 
 export default EnterLayout;

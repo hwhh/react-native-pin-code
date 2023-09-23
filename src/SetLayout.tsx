@@ -73,6 +73,7 @@ const SetLayout = ({ pin, styles, mode, textOptions, options, onSwitchMode, onSe
                 enteredPinStyle={[DEFAULT.Styles.set?.enteredPin, styles?.enteredPin]} />
 
             <NumberButtons onButtonPress={onNumberPress}
+               enableBiometricButton={false}
                 backSpace={options?.backSpace} backSpaceText={textOptions.enter?.backSpace}
                 buttonStyle={styles?.button} rowStyle={styles?.buttonRow} style={styles?.buttonContainer} textStyle={styles?.buttonText}
             />
